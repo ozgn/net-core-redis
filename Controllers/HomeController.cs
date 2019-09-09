@@ -14,10 +14,14 @@ namespace Redis.Controllers
         }
         public IActionResult Index()
         {
-            var cachedKey="Time";
-            var time=_distributedCache.GetString(cachedKey);
+            string cachedKey="Time";
+            string time=_distributedCache.GetString(cachedKey);
+            
             if(!string.IsNullOrEmpty(time))
+            {
                 return Content("From Cache: "+time);
+            }
+
             else
             {
                 time=DateTime.Now.ToString();
